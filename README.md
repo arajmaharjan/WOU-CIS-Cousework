@@ -16,7 +16,7 @@ This course covered the basic concepts of microservices, including:
 * How microservices scale (both organizationally and physically)
 * Securing microservices
 
-You can find my liner work progression with commit messages for this course at: https://github.com/wou-cs/hw02-improving-test-coverage-for-wolfit-arajmaharjan
+You can find my linear work progression with commit messages for this course at: https://github.com/wou-cs/hw02-improving-test-coverage-for-wolfit-arajmaharjan
 
 ### IS301 - Information Systems Automattion 
 This course provides an overview of automation for linux based cloud platforms. Advanced shell programming techniques are introduced and practiced. 
