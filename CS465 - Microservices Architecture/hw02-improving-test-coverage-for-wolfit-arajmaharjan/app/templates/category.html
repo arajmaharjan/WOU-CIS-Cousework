@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+  <h1><a href="{{ url_for('category', title=category) }}" id="category-link">w/{{ category }}</a></h1>
+  <p><a href="{{ url_for('create_post', category_id=category_id) }}" id="create-post-link">Create Post</a></p>
+  <hr>
+  {% include 'posts_list.html' %}
+{% endblock %}

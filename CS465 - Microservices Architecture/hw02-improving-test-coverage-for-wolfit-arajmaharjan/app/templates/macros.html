@@ -1,0 +1,47 @@
+{% macro post_meta(post) %}
+  <div class="post-meta">
+    <a href="{{ url_for('category', title=post.category.title) }}" id="category-link">{{ post.category.title }}</a> • Posted by <a href="{{ url_for('user', username=post.author.username) }}" id="author-link">{{ post.author.username }}</a> {{ post.pretty_timestamp() }}
+    <br/>
+    <span class="glyphicon glyphicon-comment"></span>&nbsp;{{ post.comment_count() }} Comments
+  </div>
+{% endmacro %}
+
+{% macro comment_meta(comment) %}
+  <div class="comment-meta"><a href="{{ url_for('user', username=comment.author.username) }}">{{ comment.author.username }}</a> • {{ comment.pretty_timestamp() }}</div>
+{% endmacro %}
+
+{% macro voting(post, index, source) %}
+  <p class="text-center">
+    {% if not post.already_voted(current_user) %}
+      <a href="{{ url_for('up_vote', post_id=post.id, next=request.path) }}" id="up-vote-{{ index }}-link"><span class="glyphicon glyphicon-arrow-up"></span></a><br/>
+      {{ post.vote_count }}<br/>
+      <a href="{{ url_for('down_vote', post_id=post.id, next=request.path) }}" id="down-vote-{{ index }}-link"><span class="glyphicon glyphicon-arrow-down"></span></a>
+    {% elif current_user.is_anonymous %}
+      <a href="{{ url_for('login') }}" id="up-vote-{{ index }}-link"><span class="glyphicon glyphicon-arrow-up"></span></a><br/>
+      {{ post.vote_count }}<br/>
+      <a href="{{ url_for('login') }}" id="down-vote-{{ index }}-link"><span class="glyphicon glyphicon-arrow-down"></span></a>
+    {% else %}
+      <span class="glyphicon glyphicon-arrow-up"></span><br/>
+      {{ post.vote_count }}<br/>
+      <span class="glyphicon glyphicon-arrow-down"></span>
+    {% endif %}
+  </p>
+{% endmacro %}
+
+{% macro comment_voting(comment, index, source) %}
+  <p class="text-center">
+    {% if not comment.already_voted(current_user) %}
+      <a href="{{ url_for('up_vote_comment', comment_id=comment.id, next=request.path) }}" id="up-vote-comment-{{ index }}-link"><span class="glyphicon glyphicon-arrow-up"></span></a><br/>
+      {{ comment.vote_count }}<br/>
+      <a href="{{ url_for('down_vote_comment', comment_id=comment.id, next=request.path) }}" id="down-vote-comment-{{ index }}-link"><span class="glyphicon glyphicon-arrow-down"></span></a>
+    {% elif current_user.is_anonymous %}
+      <a href="{{ url_for('login') }}" id="up-vote-comment-{{ index }}-link"><span class="glyphicon glyphicon-arrow-up"></span></a><br/>
+      {{ post.vote_count }}<br/>
+      <a href="{{ url_for('login') }}" id="down-vote-comment-{{ index }}-link"><span class="glyphicon glyphicon-arrow-down"></span></a>
+    {% else %}
+      <span class="glyphicon glyphicon-arrow-up"></span><br/>
+      {{ comment.vote_count }}<br/>
+      <span class="glyphicon glyphicon-arrow-down"></span>
+    {% endif %}
+  </p>
+{% endmacro %}

@@ -1,0 +1,29 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+flask-script = "*"
+pytest = "*"
+"flake8" = "*"
+flask-wtf = "*"
+flask-sqlalchemy = "*"
+flask-migrate = "*"
+flask-login = "*"
+selenium = "*"
+coverage = "*"
+flask-testing = "*"
+praw = "*"
+markdown = "*"
+flask-bootstrap = "*"
+"urllib3" = "*"
+email-validator = "*"
+celery = {extras = ["redis"], version = "*"}
+
+[dev-packages]
+"flake8" = "*"
+
+[requires]
+python_version = "3.8"

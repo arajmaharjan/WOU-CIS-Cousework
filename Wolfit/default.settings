@@ -1,0 +1,2 @@
+FLASK_APP=wolfit.py
+FLASK_ENV=development

@@ -1,0 +1,44 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}
+    {% if title %}{{ title }} - Wolfit{% else %}Welcome to Wolfit{% endif %}
+{% endblock %}
+
+{% block navbar %}
+<style media="screen" type="text/css">
+    .navbar-brand,
+    .navbar-nav li a {
+        line-height: 75px;
+        height: 75px;
+        padding-top: 0;
+    }
+</style>
+    <nav class="navbar navbar-default">
+        <div id="header" class="container-fluid">
+            <div id="nav-main" class="navbar-header">
+                <a class="navbar-brand" href="/index"><img src="{{ url_for('static', filename='img/wolfit-logo.png') }}"></a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+            {% if current_user.is_anonymous %}
+                <li class="nav" id="nav-login"><a href="{{ url_for('login') }}" id="nav-login-link">Login</a></li>
+            {% else %}
+                <li class="nav" id="nav-logout"><a href="{{ url_for('logout') }}">Logout</a></li>
+                <li class="nav" id="nav-profile"><a href="{{ url_for('user', username=current_user.username) }}" id="user-greeting">{{ greeting_name }}</a></li>
+            {% endif %}
+            </ul>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-info" role="alert">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% block app_content %}{% endblock %}
+    </div>
+{% endblock %}

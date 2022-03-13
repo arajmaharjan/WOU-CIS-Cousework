@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% from "macros.html" import post_meta, comment_meta, voting, comment_voting with context %}
+{% block app_content %}
+
+<table class="table table-bordered">
+  <tr class="post-row">
+    <td>
+      {{ voting(post) }}
+    </td>
+    <td>
+      {{ post_meta(post) }}
+      {% if post.link %}
+        <h1 id="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h1>
+      {% else %}
+        <h1 id="post-title">{{ post.title }}</h1>
+      {% endif %}
+      {% if post.body_as_html() %}
+      <div>
+        {{ post.body_as_html()|safe }}
+      </div>
+      {% endif %}
+    </td>
+  </tr>
+  <tr class="new-comment-row">
+    <td>
+    </td>
+    <td>
+      {% if current_user.is_anonymous %}
+        <a href="{{ url_for('login') }}" id="nav-login-link">Login to Comment</a>
+      {% else %}
+        Comment as {{greeting_name}}
+        <div>
+          {{ wtf.quick_form(form) }}
+        </div>
+      {% endif %}
+    </td>
+  </tr>
+  <tr class="sort-row">
+    <td>
+    </td>
+    <td>
+      Comments, sorted by most recent
+    </td>
+  </tr>
+
+  {% for comment in comments %}
+  <tr class="comment-row">
+     <td>
+      {{ comment_voting(comment) }}
+    </td>
+    <td>
+      {{ comment_meta(comment) }}
+      <div class="comment" id="comment-{{ loop.index0 }}-link">{{ comment.body }}</a></div>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

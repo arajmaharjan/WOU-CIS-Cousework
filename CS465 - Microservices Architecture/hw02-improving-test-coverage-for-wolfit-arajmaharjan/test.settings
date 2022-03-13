@@ -1,0 +1,3 @@
+SECRET_KEY="b'\xdf\xb2\xe4\xbb`p%2\xf7Mp\xf6H\xda\xbb\xee4\xb0Z\x17;V\xd4\xcb'"
+BLOG_DATABASE_NAME = 'wolfit_test.db'
+ACT_URL = "http://localhost:5001"

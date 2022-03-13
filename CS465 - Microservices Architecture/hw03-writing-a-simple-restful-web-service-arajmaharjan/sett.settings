@@ -1,0 +1,5 @@
+DATABASE_NAME="ActivityLogger"
+DATABASE_USER="phantom"
+DATABASE_PASSWORD="rado22929"
+DATABASE_HOST="mongodb+srv://phantom:rado22929@cluster0.wcrdy.mongodb.net/ActivityLogger?retryWrites=true&w=majority"
+
